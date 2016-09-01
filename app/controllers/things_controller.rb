@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class ThingsController < ApplicationController
   def show
-    present Thing::Create
+    present Thing::Update
   end
 
   def new

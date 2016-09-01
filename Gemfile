@@ -17,6 +17,7 @@ gem 'foundation-rails'
 gem 'cells-rails'
 gem 'cells-slim'
 gem 'rails-timeago'
+gem 'email_validator'
 
 group :development, :test do
   gem 'dotenv-rails'
