@@ -14,6 +14,9 @@ gem 'trailblazer-loader'
 gem 'reform', '~> 2.1.0'
 gem 'simple_form'
 gem 'foundation-rails'
+gem 'cells-rails'
+gem 'cells-slim'
+gem 'rails-timeago'
 
 group :development, :test do
   gem 'dotenv-rails'

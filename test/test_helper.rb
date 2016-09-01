@@ -5,4 +5,8 @@ require 'minitest/spec'
 require 'trailblazer/rails/test/integration'
 
 class ActiveSupport::TestCase
+  Cell::TestCase.class_eval do
+    include Capybara::DSL
+    include Capybara::Assertions
+  end
 end

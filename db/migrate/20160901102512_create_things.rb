@@ -3,6 +3,8 @@ class CreateThings < ActiveRecord::Migration[5.0]
     create_table :things do |t|
       t.text :name
       t.text :description
+
+      t.timestamps
     end
   end
 end
