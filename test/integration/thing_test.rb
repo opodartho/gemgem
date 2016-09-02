@@ -13,7 +13,10 @@ class ThingIntegrationTest < Trailblazer::Test::Integration
     # correct submit.
     fill_in 'Name', with: 'Bad Religion'
     click_button 'Create Thing'
+
+    # show
     page.current_path.must_equal thing_path(Thing.last)
+    page.body.must_match(/Bad Religion/)
 
     # edit
     thing = Thing.last
