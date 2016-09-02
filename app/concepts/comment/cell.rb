@@ -6,7 +6,7 @@ class Comment < ActiveRecord::Base
 
     include ::Gemgem::Cell::GridCell
     include ::Gemgem::Cell::CreatedAt
-    self.classes = %w(comment large-4 columns).freeze
+    self.classes = %w(comment large-4 columns)
 
     def show
       render
@@ -22,7 +22,11 @@ class Comment < ActiveRecord::Base
       include Kaminari::Cells
 
       def show
-        concept('comment/cell', collection: comments.call + paginate(comments)
+        concept(
+          'comment/cell',
+          collection: comments,
+          last: comments.last
+        ).call + paginate(comments)
       end
 
       private

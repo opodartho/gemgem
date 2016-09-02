@@ -1,0 +1,5 @@
+ul
+  - @things.each do |t|
+    li= t.name
+
+= paginate @things

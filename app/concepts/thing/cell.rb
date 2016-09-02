@@ -5,7 +5,7 @@ class Thing < ActiveRecord::Base
 
     include ::Gemgem::Cell::CreatedAt
     include ::Gemgem::Cell::GridCell
-    self.classes = %w(thing large-3 columns)
+    self.classes = %w(thing large-4 columns)
 
     def show
       render

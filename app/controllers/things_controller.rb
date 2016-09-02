@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 class ThingsController < ApplicationController
+  def index
+    @things = Thing.page(params[:page] || 1).per(10)
+  end
+
   def show
     @thing_op = present Thing::Update
     @thing = @thing_op.model
@@ -23,6 +27,14 @@ class ThingsController < ApplicationController
     end
 
     render action: :new
+  end
+
+  def update
+    run Thing::Update do |op|
+      return redirect_to op.model
+    end
+
+    render :new
   end
 
   def create_comment
