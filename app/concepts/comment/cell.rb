@@ -19,20 +19,23 @@ class Comment < ActiveRecord::Base
     end
 
     class Grid < ::Cell::Concept
-      include Kaminari::Cells
+      include WillPaginate::ActionView
 
       def show
-        concept(
-          'comment/cell',
-          collection: comments,
-          last: comments.last
-        ).call + paginate(comments)
+        ct = content_tag :div, class: 'row' do
+          concept(
+            'comment/cell',
+            collection: comments,
+            last: comments.last
+          )
+        end
+        ct + will_paginate(comments)
       end
 
       private
 
       def comments
-        @comments ||= model.comments.page(page).per(3)
+        @comments ||= model.comments.includes(:user).paginate(page: page, per_page: 5)
       end
 
       def page
