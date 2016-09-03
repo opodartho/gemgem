@@ -19,23 +19,22 @@ class Comment < ActiveRecord::Base
     end
 
     class Grid < ::Cell::Concept
-      include WillPaginate::ActionView
+      include ActionView::Helpers::JavaScriptHelper
+      include Kaminari::Cells
+      inherit_views Comment::Cell
 
       def show
-        ct = content_tag :div, class: 'row' do
-          concept(
-            'comment/cell',
-            collection: comments,
-            last: comments.last
-          )
-        end
-        ct + will_paginate(comments)
+        render :grid
+      end
+
+      def append
+        %{ $("#next").replaceWith("#{j(show)}") }
       end
 
       private
 
       def comments
-        @comments ||= model.comments.includes(:user).paginate(page: page, per_page: 5)
+        @comments ||= model.comments.includes(:user).page(page).per(5)
       end
 
       def page
